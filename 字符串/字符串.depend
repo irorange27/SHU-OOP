@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1695179347 source:e:\×Ö·û´®\string.cpp
+	<iostream>
+	<iomanip>
+	<cstring>
+	"string.h"
+
+1695180451 e:\×Ö·û´®\string.h
+
+1695180859 source:e:\×Ö·û´®\main.cpp
+	<iostream>
+	<iomanip>
+	"string.h"
+
+1695449747 source:e:\c++\×Ö·û´®\main.cpp
+	<iostream>
+	<iomanip>
+	"string.h"
+
+1695449741 e:\c++\×Ö·û´®\string.h
+
