@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1695785352 source:e:\向量类\main.cpp
+	<iostream>
+	<iomanip>
+	"vector.h"
+
+1695785691 e:\向量类\vector.h
+
+1695785352 source:e:\向量类\vector.cpp
+	<iostream>
+	<iomanip>
+	"vector.h"
+
