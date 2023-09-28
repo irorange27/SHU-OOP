@@ -1,7 +1,9 @@
 #include<iostream>
 #include<iomanip>
 #include"vector.h"
+
 using namespace std;
+
 Vector::Vector(int a)
 {
     n=a;
