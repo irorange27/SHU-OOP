@@ -1,0 +1,3 @@
+D:/Clion Project/OOP-EX4-string/cmake-build-debug/CMakeFiles/OOP_EX4_string.dir
+D:/Clion Project/OOP-EX4-string/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Clion Project/OOP-EX4-string/cmake-build-debug/CMakeFiles/rebuild_cache.dir
