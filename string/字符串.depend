@@ -12,10 +12,19 @@
 	<iomanip>
 	"string.h"
 
-1695449788 source:e:\c++\×Ö·û´®\main.cpp
+1696647297 source:e:\string\main.cpp
+	<iostream>
+	<vector>
+	"string.h"
+	<algorithm>
+	<cctype>
+	<Windows.h>
+
+1696647312 e:\string\string.h
+
+1696647411 source:e:\string\string.cpp
 	<iostream>
 	<iomanip>
+	<cstring>
 	"string.h"
-
-1695640498 e:\c++\×Ö·û´®\string.h
 
