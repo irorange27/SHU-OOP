@@ -5,14 +5,13 @@ using namespace std;
 
 int main()
 {
-    double e;
-    Vector a(5),b(6),d(5);
+    double e,f;
+    Vector a(4),b(6),d(5);
     Vector c(a);
-    a.show();
-    b.show();
-    c.show();
-    d.show();
+    cout<<"ÇëÊäÈëa"<<endl;
+    cin>>a>>b;
     e=InMultiply(a,d);
-    cout<<e<<endl;
+    f=b.radius();
+    cout<<a<<b<<c<<d<<e<<f<<endl;
     return 0;
 }

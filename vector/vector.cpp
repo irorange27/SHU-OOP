@@ -1,5 +1,7 @@
 #include<iostream>
 #include<iomanip>
+#include<cstring>
+#include<cmath>
 #include"vector.h"
 using namespace std;
 Vector::Vector(int a)
@@ -44,15 +46,54 @@ Vector & Vector::operator=(const Vector &a)
     }
     return *this;
 }
-void Vector::show() const
+Vector & Vector::operator+=(const Vector &a)
 {
-    if(n==0)
-        return;
+    *this=*this+a;
+    return *this;
+}
+Vector & Vector::operator-=(const Vector &a)
+{
+    *this=*this-a;
+    return *this;
+}
+double Vector::radius()const
+{
+    double temp=0;
+    for(int i=0;i<n;i++)
+        temp=temp+vec[i]*vec[i];
+    temp=sqrt(temp);
+    return temp;
+}
+Vector operator+(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    if(a.n!=b.n)
+        return temp;
     else
-        cout<<"("<<vec[0];
-    for(int i=1;i<n;i++)
-        cout<<", "<<vec[i];
-    cout<<")"<<endl;
+    {
+        for(int i=0;i<a.n;i++)
+            temp.vec[i]=a.vec[i]+b.vec[i];
+    }
+    return temp;
+}
+Vector operator-(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    if(a.n!=b.n)
+        return temp;
+    else
+    {
+        for(int i=0;i<a.n;i++)
+            temp.vec[i]=a.vec[i]-b.vec[i];
+    }
+    return temp;
+}
+Vector operator*(const double &a,const Vector &b)
+{
+    Vector temp;
+    for(int i=0;i<b.n;i++)
+        temp.vec[i]=a*b.vec[i];
+    return temp;
 }
 double InMultiply(const Vector &a,const Vector &b)
 {
@@ -65,4 +106,75 @@ double InMultiply(const Vector &a,const Vector &b)
             temp=temp+a.vec[i]*b.vec[i];
     }
     return temp;
+}
+bool operator<(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    temp=a-b;
+    return temp.radius()<0;
+}
+bool operator>(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    temp=a-b;
+    return temp.radius()>0;
+}
+bool operator<=(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    temp=a-b;
+    return temp.radius()<=0;
+}
+bool operator>=(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    temp=a-b;
+    return temp.radius()>=0;
+}
+bool operator==(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    temp=a-b;
+    return temp.radius()==0;
+}
+bool operator!=(const Vector &a,const Vector &b)
+{
+    Vector temp;
+    temp=a-b;
+    return temp.radius()!=0;
+}
+ostream & operator<<(ostream &out,const Vector &a)
+{
+    if(a.n!=0)
+    {
+        cout<<"("<<a.vec[0];
+        for(int i=1;i<a.n;i++)
+            cout<<", "<<a.vec[i];
+        cout<<")"<<endl;
+    }
+    return out;
+}
+istream & operator>>(istream &in,Vector &a)
+{
+    int i=0;
+    char str[100];
+    in.getline(str,100,' ');
+    if(in==NULL)
+        return in;
+    a.n=atoi(str);
+    a.vec=new double [a.n];
+    for(i=0;i<=a.n-2;i++)
+    {
+        in.getline(str,100,' ');
+        if(in==NULL)
+        {
+            break;
+            return in;
+        }
+        else
+            a.vec[i]=atoi(str);
+    }
+    in.getline(str,100,'\n');
+    a.vec[i]=atoi(str);
+    return in;
 }

@@ -11,3 +11,33 @@
 	<iomanip>
 	"vector.h"
 
+1697019318 source:e:\c++\vector\main.cpp
+	<iostream>
+	<iomanip>
+	"vector.h"
+
+1697020095 e:\c++\vector\vector.h
+	<iostream>
+
+1697019293 source:e:\c++\vector\vector.cpp
+	<iostream>
+	<iomanip>
+	<cstring>
+	<cmath>
+	"vector.h"
+
+1696995261 source:e:\vector\main.cpp
+	<iostream>
+	<iomanip>
+	"vector.h"
+
+1696995018 e:\vector\vector.h
+	<iostream>
+
+1696995735 source:e:\vector\vector.cpp
+	<iostream>
+	<iomanip>
+	<cstring>
+	<cmath>
+	"vector.h"
+
