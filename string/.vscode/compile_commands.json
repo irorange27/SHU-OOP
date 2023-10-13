@@ -1,0 +1,21 @@
+[
+{
+  "directory": "/home/niina/Public/SHU-oop/string",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/main/linux/x86_64/release/main.cpp.o", "main.cpp"],
+  "file": "main.cpp"
+},
+{
+  "directory": "/home/niina/Public/SHU-oop/string",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/string/linux/x86_64/release/String.cpp.o", "String.cpp"],
+  "file": "String.cpp"
+},
+{
+  "directory": "/home/niina/Public/SHU-oop/string",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/test/linux/x86_64/release/test.cpp.o", "test.cpp"],
+  "file": "test.cpp"
+},
+{
+  "directory": "/home/niina/Public/SHU-oop/string",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/test/linux/x86_64/release/String.cpp.o", "String.cpp"],
+  "file": "String.cpp"
+}]

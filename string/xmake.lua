@@ -2,12 +2,16 @@ add_rules("mode.debug", "mode.release")
 
 target("string")
     set_kind("static")
-    add_files("string.cpp")
+    add_files("String.cpp")
 
 target("main")
     set_kind("binary")
     add_files("main.cpp")
+    add_deps("string")
 
+target("test")
+    set_kind("binary")
+    add_files("*.cpp|main.cpp")
     add_deps("string")
 
 --
