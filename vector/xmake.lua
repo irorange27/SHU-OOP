@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
-target("向量类")
+target("Vector")
     set_kind("static")
     add_files("vector.cpp")
 
@@ -8,7 +8,11 @@ target("main")
     set_kind("binary")
     add_files("main.cpp")
 
-    add_deps("向量类")
+target("test")
+    set_kind("binary")
+    add_files("*.cpp|main.cpp")
+
+    add_deps("Vector")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

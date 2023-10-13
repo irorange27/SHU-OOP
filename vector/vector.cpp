@@ -3,7 +3,10 @@
 #include<cstring>
 #include<cmath>
 #include"vector.h"
+
 using namespace std;
+
+/* Initialize vector with random value */
 Vector::Vector(int a)
 {
     n=a;
@@ -18,6 +21,7 @@ Vector::Vector(int a)
     for(int i=0;i<n;i++)
         vec[i]=rand()%10;
 }
+
 Vector::Vector(const Vector &a)
 {
     n=a.n;
@@ -154,27 +158,27 @@ ostream & operator<<(ostream &out,const Vector &a)
     }
     return out;
 }
-istream & operator>>(istream &in,Vector &a)
-{
-    int i=0;
-    char str[100];
-    in.getline(str,100,' ');
-    if(in==NULL)
-        return in;
-    a.n=atoi(str);
-    a.vec=new double [a.n];
-    for(i=0;i<=a.n-2;i++)
-    {
-        in.getline(str,100,' ');
-        if(in==NULL)
-        {
-            break;
-            return in;
-        }
-        else
-            a.vec[i]=atoi(str);
-    }
-    in.getline(str,100,'\n');
-    a.vec[i]=atoi(str);
-    return in;
-}
+// istream & operator>>(istream &in,Vector &a)
+// {
+//     int i=0;
+//     char str[100];
+//     in.getline(str,100,' ');
+//     if(in==NULL)
+//         return in;
+//     a.n=atoi(str);
+//     a.vec=new double [a.n];
+//     for(i=0;i<=a.n-2;i++)
+//     {
+//         in.getline(str,100,' ');
+//         if(in==NULL)
+//         {
+//             break;
+//             return in;
+//         }
+//         else
+//             a.vec[i]=atoi(str);
+//     }
+//     in.getline(str,100,'\n');
+//     a.vec[i]=atoi(str);
+//     return in;
+// }
