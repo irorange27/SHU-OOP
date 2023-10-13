@@ -1,0 +1,15 @@
+{
+    mtimes = {
+        ["src/demo/xmake.lua"] = 1696597466,
+        ["xmake.lua"] = 1696597466,
+        ["src/dev/xmake.lua"] = 1696597466,
+        ["src/test/test1/xmake.lua"] = 1696597466,
+        ["src/test/xmake.lua"] = 1696597466
+    },
+    options = {
+        arch = "x86_64",
+        plat = "linux",
+        mode = "debug"
+    },
+    recheck = false
+}

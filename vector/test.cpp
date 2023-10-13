@@ -1,10 +1,17 @@
 #include "vector.h"
 
+void status(void)
+{
+    cout << sizeof(Vector) << endl;
+}
+
 int main(int argc, char** argv)
 {
     Vector init;
     Vector initWithValue(4);
     Vector copyInit(initWithValue);
+
+    status();
 
     cout << init << endl;
     cout << initWithValue << endl;
