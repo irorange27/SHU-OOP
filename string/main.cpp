@@ -2,6 +2,7 @@
 #include "String.h"
 #include <algorithm>
 #include <cctype>
+#include <vector>
 #ifdef _WIN32
     #include <Windows.h>
 #endif

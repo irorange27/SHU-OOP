@@ -3,6 +3,7 @@ add_rules("mode.debug", "mode.release")
 target("string")
     set_kind("static")
     add_files("String.cpp")
+    add_files("main.cpp")
 
 target("main")
     set_kind("binary")
@@ -11,6 +12,7 @@ target("main")
 
 target("test")
     set_kind("binary")
+    add_files("main.cpp")
     add_deps("string")
     add_tests("test")
 --
