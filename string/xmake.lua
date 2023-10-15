@@ -11,9 +11,8 @@ target("main")
 
 target("test")
     set_kind("binary")
-    add_files("*.cpp|main.cpp")
     add_deps("string")
-
+    add_tests("test")
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
