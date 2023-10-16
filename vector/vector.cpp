@@ -4,17 +4,12 @@
 #include<cmath>
 #include"vector.h"
 using namespace std;
-Vector::Vector(int a)
+Vector::Vector(int a)throw(int)
 {
-    n=a;
     if(a<=0)
-    {
-        n=1;
-        vec=NULL;
-        return;
-    }
-    else
-        vec=new double [n];
+        throw (int)1;
+    n=a;
+    vec=new double [n];
     for(int i=0;i<n;i++)
         vec[i]=rand()%10;
 }
@@ -64,42 +59,86 @@ double Vector::radius()const
     temp=sqrt(temp);
     return temp;
 }
-Vector operator+(const Vector &a,const Vector &b)
+double & Vector::operator[](const int &i)const throw(double)
 {
-    Vector temp;
+    if(i>=n||i<0)
+        throw (double)0;
+    return vec[i];
+}
+Vector & Vector::Add(const int &a)
+{
+    int i=0;
+    const int b=n;
+    Vector temp=*this;
+    if(vec)
+        delete [] vec;
+    vec=new double [n+a];
+    n=a+b;
+    for(i=0;i<b;i++)
+        vec[i]=temp.vec[i];
+    for(i=b;i<b+a;i++)
+        vec[i]=0;
+    return *this;
+}
+Vector & Vector::Delete(const int &a)
+{
+    const int b=n;
+    Vector temp=*this;
+    if(vec)
+        delete [] vec;
+    vec=new double [b-a];
+    n=b-a;
+    for(int i=0;i<b-a;i++)
+        vec[i]=temp.vec[i];
+    return *this;
+}
+Vector operator+(const Vector &a,const Vector &b)throw(char)
+{
     if(a.n!=b.n)
-        return temp;
-    else
-    {
-        for(int i=0;i<a.n;i++)
-            temp.vec[i]=a.vec[i]+b.vec[i];
-    }
+        throw (char)-1;
+    Vector temp(a.n);
+    for(int i=0;i<a.n;i++)
+        temp.vec[i]=a.vec[i]+b.vec[i];
     return temp;
 }
-Vector operator-(const Vector &a,const Vector &b)
+Vector operator-(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
     if(a.n!=b.n)
-        return temp;
-    else
-    {
-        for(int i=0;i<a.n;i++)
-            temp.vec[i]=a.vec[i]-b.vec[i];
-    }
+        throw (char)-1;
+    Vector temp(a.n);
+    for(int i=0;i<a.n;i++)
+        temp.vec[i]=a.vec[i]-b.vec[i];
     return temp;
 }
 Vector operator*(const double &a,const Vector &b)
 {
-    Vector temp;
+    Vector temp(b.n);
     for(int i=0;i<b.n;i++)
         temp.vec[i]=a*b.vec[i];
     return temp;
 }
-double InMultiply(const Vector &a,const Vector &b)
+Vector operator*(const Vector &b,const double &a)
+{
+    Vector temp(b.n);
+    for(int i=0;i<b.n;i++)
+        temp.vec[i]=a*b.vec[i];
+    return temp;
+}
+Vector operator*(const Vector &a,const Vector &b)throw(float)
+{
+    if(a.n!=3||b.n!=3)
+        throw (float)-1;
+    Vector temp(3);
+    temp.vec[0]=a.vec[1]*b.vec[2]-a.vec[2]*b.vec[1];
+    temp.vec[1]=a.vec[2]*b.vec[0]-a.vec[0]*b.vec[2];
+    temp.vec[2]=a.vec[0]*b.vec[1]-a.vec[1]*b.vec[0];
+    return temp;
+}
+double InMultiply(const Vector &a,const Vector &b)throw(char)
 {
     double temp=0;
     if(a.n!=b.n)
-        return 0;
+        throw (char)-1;
     else
     {
         for(int i=0;i<a.n;i++)
@@ -107,39 +146,51 @@ double InMultiply(const Vector &a,const Vector &b)
     }
     return temp;
 }
-bool operator<(const Vector &a,const Vector &b)
+bool operator<(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
+    if(a.n!=b.n)
+        throw (char)-1;
+    Vector temp(a.n);
     temp=a-b;
     return temp.radius()<0;
 }
-bool operator>(const Vector &a,const Vector &b)
+bool operator>(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
+    if(a.n!=b.n)
+        throw (char)-1;
+    Vector temp(a.n);
     temp=a-b;
     return temp.radius()>0;
 }
-bool operator<=(const Vector &a,const Vector &b)
+bool operator<=(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
+    if(a.n!=b.n)
+        throw (char)-1;
+    Vector temp(a.n);
     temp=a-b;
     return temp.radius()<=0;
 }
-bool operator>=(const Vector &a,const Vector &b)
+bool operator>=(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
+    if(a.n!=b.n)
+        throw (char)-1;
+    Vector temp(a.n);
     temp=a-b;
     return temp.radius()>=0;
 }
-bool operator==(const Vector &a,const Vector &b)
+bool operator==(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
+    if(a.n!=b.n)
+        throw (char)-1;
+    Vector temp(a.n);
     temp=a-b;
     return temp.radius()==0;
 }
-bool operator!=(const Vector &a,const Vector &b)
+bool operator!=(const Vector &a,const Vector &b)throw(char)
 {
-    Vector temp;
+    if(a.n!=b.n)
+        throw (char)-1;
+    Vector temp(a.n);
     temp=a-b;
     return temp.radius()!=0;
 }
@@ -159,19 +210,19 @@ istream & operator>>(istream &in,Vector &a)
     int i=0;
     char str[100];
     in.getline(str,100,' ');
-    if(in==NULL)
-        return in;
+    /*if(in==NULL)
+        return in;*/
     a.n=atoi(str);
     a.vec=new double [a.n];
     for(i=0;i<=a.n-2;i++)
     {
         in.getline(str,100,' ');
-        if(in==NULL)
+        /*if(in==NULL)
         {
             break;
             return in;
         }
-        else
+        else*/
             a.vec[i]=atoi(str);
     }
     in.getline(str,100,'\n');
