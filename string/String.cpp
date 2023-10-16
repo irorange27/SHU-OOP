@@ -1,8 +1,10 @@
 #include<iostream>
 #include<iomanip>
 #include<cstring>
-#include"string.h"
+#include"String.h"
+
 using namespace std;
+
 String::String(const char *a)
 {
     str=new char[strlen(a)+1];

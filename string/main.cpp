@@ -1,10 +1,14 @@
 #include <iostream>
-#include <vector>
-#include "string.h"
+#include "String.h"
 #include <algorithm>
 #include <cctype>
-#include <Windows.h>
+#include <vector>
+#ifdef _WIN32
+    #include <Windows.h>
+#endif
+
 using namespace std;
+
 const int WORD_LENGTH = 5;
 const int NOT_MATCH = 0;
 const int PARTIAL_MATCH = 1;

@@ -1,5 +1,8 @@
 #ifndef STRING_H_INCLUDED
 #define STRING_H_INCLUDED
+
+#include <vector>
+
 class String
 {
 public:
@@ -19,4 +22,6 @@ void toUpperCase(String &);
 String getRandomWord();
 bool isValid(String word);
 void printWordle(vector<string> tries, vector<vector<int>> matches, int currentTry);
+
+
 #endif // STRING_H_INCLUDED

@@ -1,0 +1,25 @@
+{
+    gtest = {
+        linkdirs = "/home/niina/.xmake/packages/g/gtest/1.12.1/77b9096bc4b34d9282f672d36b015ba9/lib",
+        version = "1.12.1",
+        static = true,
+        sysincludedirs = "/home/niina/.xmake/packages/g/gtest/1.12.1/77b9096bc4b34d9282f672d36b015ba9/include",
+        __requirestr = "gtest",
+        installdir = "/home/niina/.xmake/packages/g/gtest/1.12.1/77b9096bc4b34d9282f672d36b015ba9",
+        envs = {
+            LD_LIBRARY_PATH = {
+                "/home/niina/.xmake/packages/g/gtest/1.12.1/77b9096bc4b34d9282f672d36b015ba9/lib"
+            }
+        },
+        libfiles = {
+            "/home/niina/.xmake/packages/g/gtest/1.12.1/77b9096bc4b34d9282f672d36b015ba9/lib/libgtest.a",
+            "/home/niina/.xmake/packages/g/gtest/1.12.1/77b9096bc4b34d9282f672d36b015ba9/lib/libgmock.a"
+        },
+        __enabled = true,
+        syslinks = "pthread",
+        links = {
+            "gtest",
+            "gmock"
+        }
+    }
+}

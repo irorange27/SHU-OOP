@@ -1,0 +1,9 @@
+{
+    mtimes = {
+        ["xmake.lua"] = 1696823974
+    },
+    options = {
+        cc = "clang"
+    },
+    recheck = false
+}

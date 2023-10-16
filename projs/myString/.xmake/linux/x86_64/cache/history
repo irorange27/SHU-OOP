@@ -1,0 +1,20 @@
+{
+    cmdlines = {
+        "xmake check",
+        "xmake check",
+        "xmake check",
+        "xmake check",
+        "xmake check",
+        "xmake check",
+        "xmake f -p linux -a x86_64 -m debug",
+        "xmake check",
+        "xmake check",
+        "xmake build -w wordle_cli",
+        "xmake lua /home/niina/.local/share/xmake/modules/private/utils/statistics.lua",
+        "xmake run",
+        "xmake ",
+        "xmake build wordle_cli",
+        "xmake l /home/niina/.vscode/extensions/tboox.xmake-vscode-2.2.3/assets/explorer.lua",
+        "xmake l /home/niina/.vscode/extensions/tboox.xmake-vscode-2.2.3/assets/config.lua"
+    }
+}
