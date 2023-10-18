@@ -212,7 +212,7 @@ istream & operator>>(istream &in,Vector &a)
     in.getline(str,100,' ');
     /*if(in==NULL)
         return in;*/
-    a.n=atoi(str);
+    a.n=atof(str);
     a.vec=new double [a.n];
     for(i=0;i<=a.n-2;i++)
     {
@@ -223,9 +223,9 @@ istream & operator>>(istream &in,Vector &a)
             return in;
         }
         else*/
-            a.vec[i]=atoi(str);
+            a.vec[i]=atof(str);
     }
     in.getline(str,100,'\n');
-    a.vec[i]=atoi(str);
+    a.vec[i]=atof(str);
     return in;
 }
