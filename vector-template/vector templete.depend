@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1697600354 source:e:\vector templete\main.cpp
+	<iostream>
+	"vector templete.h"
+
+1697599835 e:\vector templete\vector templete.h
+	<iostream>
+	<cmath>
+
+1697606258 source:e:\c++\vector templete\main.cpp
+	<iostream>
+	"vector templete.h"
+
+1697606281 e:\c++\vector templete\vector templete.h
+	<iostream>
+	<cmath>
+
