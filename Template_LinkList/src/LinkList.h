@@ -13,7 +13,11 @@ private:
     T _data;
     Node* _prev;
     Node* _next;
+    void setPrev(Node* prev) { _prev = prev; }
+    void setNext(Node* next) { _next = next; }
+    void setData(T data) { _data = data; }
     friend class LinkList<T>;
+
 public:
     Node() : _prev(nullptr), _next(nullptr) {}
     Node(T data) : _data(data), _prev(nullptr), _next(nullptr) {}
@@ -27,10 +31,6 @@ public:
     T data() const { return _data; }
     Node* prev() const { return _prev; }
     Node* next() const { return _next; }
-    void setPrev(Node* prev) { _prev = prev; }
-    void setNext(Node* next) { _next = next; }
-    void setData(T data) { _data = data; }
-
 
 };
 
@@ -40,6 +40,10 @@ private:
     Node<T>* _head;
     Node<T>* _cur_node;
     size_t _size;
+    void setNext(LinkList<T>* next) { _cur_node->setNext(next); }
+    void setPrev(LinkList<T>* prev) { _cur_node->setPrev(prev); }
+    void setCurNode(Node<T>* cur_node) { _cur_node = cur_node; }
+
 public:
     LinkList() : _head(nullptr), _cur_node(nullptr), _size(0) {}
     LinkList(T data) : _head(new Node<T>(data)), _cur_node(_head), _size(1) {}
@@ -71,12 +75,10 @@ public:
     Node<T>* head() const { return _head; }
     Node<T>* tail() const { return _cur_node; } 
     Node<T>* curNode() const { return _cur_node; }
-    void setCurNode(Node<T>* cur_node) { _cur_node = cur_node; }
     LinkList<T>* next() const { return _cur_node->next(); }
     LinkList<T>* prev() const { return _cur_node->prev(); }
-    void setNext(LinkList<T>* next) { _cur_node->setNext(next); }
-    void setPrev(LinkList<T>* prev) { _cur_node->setPrev(prev); }
     void setData(T data) { _cur_node->setData(data); }
+    LinkList<T> copy() const;
     LinkList<T>& append(T data);
     LinkList<T>& extend(const LinkList<T>& other);
     LinkList<T>& pop();
@@ -109,6 +111,14 @@ void LinkList<char>::show() const {
     std::cout << std::endl;
 }
 
+template <typename T>
+LinkList<T> LinkList<T>::copy() const {
+    LinkList<T> copyList;
+    for (Node<T>* cur_node = _head; cur_node != nullptr; cur_node = cur_node->next())
+        copyList.append(cur_node->data());
+    
+    return copyList;
+}
 
 template <typename T>
 LinkList<T>& LinkList<T>::append(T data) {
@@ -125,7 +135,8 @@ LinkList<T>& LinkList<T>::append(T data) {
 
 template <typename T>
 LinkList<T>& LinkList<T>::extend(const LinkList<T>& other) {
-    Node<T>* cur_node = other._head;
+    LinkList<T> copyList = other.copy();
+    Node<T>* cur_node = copyList._head;
     while (cur_node != nullptr) {
         append(cur_node->data());
         cur_node = cur_node->next();
