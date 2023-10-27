@@ -1,0 +1,6 @@
+[
+{
+  "directory": "/home/niina/Public/SHU-oop/lab/ShapeClass",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-o", "build/.objs/ShapeClass/linux/x86_64/test/test.cpp.o", "test/test.cpp"],
+  "file": "test/test.cpp"
+}]

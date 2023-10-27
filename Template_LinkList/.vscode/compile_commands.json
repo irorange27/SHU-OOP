@@ -1,0 +1,16 @@
+[
+{
+  "directory": "/home/niina/Public/SHU-oop/Template_LinkList",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-o", "build/.objs/test_output/linux/x86_64/debug/test/test_output.cpp.o", "test/test_output.cpp"],
+  "file": "test/test_output.cpp"
+},
+{
+  "directory": "/home/niina/Public/SHU-oop/Template_LinkList",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-o", "build/.objs/test_iList/linux/x86_64/debug/test/test_iList.cpp.o", "test/test_iList.cpp"],
+  "file": "test/test_iList.cpp"
+},
+{
+  "directory": "/home/niina/Public/SHU-oop/Template_LinkList",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-o", "build/.objs/test_node/linux/x86_64/debug/test/test_node.cpp.o", "test/test_node.cpp"],
+  "file": "test/test_node.cpp"
+}]

@@ -4,9 +4,29 @@ add_rules("mode.debug", "mode.release")
 --     set_kind("binary")
 --     add_files("src/*.cpp")
 
-target("test")
-    set_kind("binary")
-    add_files("test/*.cpp")
+for _, file in ipairs(os.files("test/test_*.cpp")) do
+    local name = path.basename(file)
+    target(name)
+        set_kind("binary")
+        set_default(true)
+        add_files(file)
+        add_tests("default")
+    target_end()
+end
+
+
+-- target("test_iList")
+--     set_kind("binary")
+--     add_files("test/test_iList.cpp")
+--     add_tests("test_iList")
+--     set_group("test1")
+
+-- target("test_node")
+--     set_kind("binary")
+--     add_files("test/test_node.cpp")
+--     add_tests("test_node")
+--     set_group("test2")
+
 
 
 -- define toolchain

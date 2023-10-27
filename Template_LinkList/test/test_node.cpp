@@ -1,10 +1,12 @@
 #include <iostream>
+#include <cstddef>
 #include "../src/LinkList.h"
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
+    cout << "Test for node class:\n";
     LinkList<int> a(1);
     LinkList<int> b(3);
     LinkList<int> c(b);
@@ -30,8 +32,10 @@ int main(int argc, char** argv)
     a.popleft();
     a.append(4).append(5);
     a.extend(a);
-    // a.extend(d);
+    a.show();
+    a.extend(d);
     a.show();
 
+    cout << "\n------end-------\n";
     return 0;
 }

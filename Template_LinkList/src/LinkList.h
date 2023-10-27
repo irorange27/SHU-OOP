@@ -83,6 +83,29 @@ public:
     LinkList<T>& extend(const LinkList<T>& other);
     LinkList<T>& pop();
     LinkList<T>& popleft();
+
+    friend std::istream& operator>>(std::istream& is, LinkList<T>& list) {
+        T data;
+        while (is >> data and data != -1) {
+            list.append(data);
+        }
+        return is;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const LinkList<T>& list) {
+        Node<T>* cur_node = list._head;
+        os << "[";
+        if (cur_node != nullptr) {
+            os << cur_node->data();
+            cur_node = cur_node->next();
+            while (cur_node != nullptr) {
+                os << ", " << cur_node->data();
+                cur_node = cur_node->next();
+            }
+        }
+        os << "]";
+        return os;
+    }
     
 };
 
