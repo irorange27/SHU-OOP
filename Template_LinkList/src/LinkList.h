@@ -116,7 +116,7 @@ LinkList<T>& LinkList<T>::append(T data) {
         _head = new Node<T>(data);
         _cur_node = _head;
     } else {
-        _cur_node->setNext(new Node<T>(data));
+        _cur_node->setNext(new Node<T>(data, _cur_node, nullptr));
         _cur_node = _cur_node->next();
     }
     _size++;
