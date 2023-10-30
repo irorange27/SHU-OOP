@@ -42,10 +42,37 @@ MyString &MyString::operator=(const MyString &pn) // 深赋值运算
 
 istream &operator>>(istream &in, MyString &guess) // 重载输入运算符
 {
-    char temp[100];
+    char temp[1000];
     in >> temp;
     guess = temp;
     return in;
+}
+
+void MyString::show() const //输出
+{
+    cout << str << endl;
+}
+
+char & MyString::operator[](const int &index)const throw(int)
+{
+    if (index>=strlen(str))
+        throw(int)1;
+    return str[index];
+}
+
+MyString & MyString::operator+=(const MyString &b) //重载+=
+{
+    *this =*this + b;
+    return *this;
+}
+
+MyString operator+(const MyString &s1,const MyString &s2) //重载+
+{
+    MyString res;
+    res.str = new char[strlen(s1.str) + strlen(s2.str) + 1];
+    strcpy(res.str, s1.str);
+    strcat(res.str, s2.str);
+    return res;
 }
 
 void MyString::Uppername()
@@ -130,7 +157,7 @@ void printWordle(vector<string> tries, vector<vector<int>> matches, int currentT
 
     cout << "=================================================================" << endl;
     cout << "|                                                               |" << endl;
-    cout << "|   $$\\      $$\\                           $$\\ $$\\   |" << endl;
+    cout << "|   $$\\      $$\\                           $$\\ $$\\              |" << endl;
     cout << "|   $$ | $\\  $$ |                          $$ |$$ |             |" << endl;
     cout << "|   $$ |$$$\\ $$ | $$$$$$\\   $$$$$$\\   $$$$$$$ |$$ | $$$$$$\\     |" << endl;
     cout << "|   $$ $$ $$\\$$ |$$  __$$\\ $$  __$$\\ $$  __$$ |$$ |$$  __$$\\    |" << endl;

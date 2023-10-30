@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1698590799 source:d:\0work\code\oop\oop-proj\wordle\wordle.cpp
+	<iostream>
+	<cstring>
+	<vector>
+	<Windows.h>
+	"wordle.h"
+	<cctype>
+
+1698590820 d:\0work\code\oop\oop-proj\wordle\wordle.h
+	<vector>
+
+1698590798 source:d:\0work\code\oop\oop-proj\wordle\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	<algorithm>
+	<cctype>
+	<Windows.h>
+	"wordle.h"
+
