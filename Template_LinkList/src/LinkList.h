@@ -75,13 +75,15 @@ public:
         }
         return cur_node;
     }
-    Node<T>* locate(const T& data) {
+
+    template <typename T1> Node<T>* locate(const T1& data) {
         Node<T>* cur_node = _head;
-        while (cur_node != nullptr && T(cur_node->data()) != T(data)) {
+        while (cur_node != nullptr && T1(cur_node->data()) != T1(data)) {
             cur_node = cur_node->next();
-        }
+        }t 
         return cur_node;
     }
+
     T& index(size_t index) const {
         Node<T>* cur_node = _head;
         for (size_t i = 0; i < index; i++) {
@@ -89,6 +91,7 @@ public:
         }
         return cur_node->data();
     }
+
     Node<T>* getNode(const T& data) const {
         Node<T>* cur_node = _head;
         while (cur_node != nullptr && cur_node->data() != data) {
@@ -133,7 +136,7 @@ public:
     bool operator!=(const LinkList<T>& other) const {
         return !(*this == other);
     }
-    
+
     friend std::istream& operator>>(std::istream& is, LinkList<T>& list) {
         T data;
         while (is >> data and data != -1) {
@@ -187,14 +190,14 @@ void LinkList<T>::show() const {
     std::cout << "]\n";
 }
 
-template <>
-void LinkList<char>::show() const {
-    Node<char>* cur_node = _head;
-    if (cur_node != nullptr) {
-        std::cout << cur_node->data(); 
-    }
-    std::cout << std::endl;
-}
+// template <>
+// void LinkList<char>::show() const {
+//     Node<char>* cur_node = _head;
+//     if (cur_node != nullptr) {
+//         std::cout << cur_node->data(); 
+//     }
+//     std::cout << std::endl;
+// }
 
 template <typename T>
 int LinkList<T>::save(const std::string& filename) {
