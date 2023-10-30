@@ -79,7 +79,14 @@ public:
         }
         return cur_node;
     }
-    T index(size_t index) const{
+    T& locate(const T& data) {
+        Node<T>* cur_node = _head;
+        while (cur_node != nullptr && cur_node->data() != data) {
+            cur_node = cur_node->next();
+        }
+        return cur_node->data();
+    }
+    T& index(size_t index) const{
         Node<T>* cur_node = _head;
         for (size_t i = 0; i < index; i++) {
             cur_node = cur_node->next();
