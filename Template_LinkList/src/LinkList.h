@@ -47,14 +47,6 @@ private:
 public:
     LinkList() : _head(nullptr), _cur_node(nullptr), _size(0) {}
     LinkList(T data) : _head(new Node<T>(data)), _cur_node(_head), _size(1) {}
-    
-   
-    /**
-     * Copy constructor for the LinkList class.
-     * Initializes a new LinkList object with a copy of the data from the given LinkList object.
-     *
-     * @param other The LinkList object to copy from.
-     */
     LinkList(const LinkList<T>& other) : _head(nullptr), _cur_node(nullptr), _size(0) {
         Node<T>* cur_node = other._head;
         while (cur_node != nullptr) {
@@ -66,16 +58,20 @@ public:
         clear();
     }
 
-    void show() const;
     
+    int save(const std::string& filename);
+    int load(const std::string& filename);
+    
+    // Get data for the LinkList class
+    T data() const { return _cur_node->data(); }    // Get data for the LinkList class
+    void show() const;  // Displays the data in the LinkList.
+    LinkList<T>& operator=(const LinkList<T>& other);   // Assigns a LinkList object to another LinkList object.
     size_t size() const { return _size; }
     Node<T>* head() const { return _head; }
     Node<T>* tail() const { return _cur_node; } 
     Node<T>* curNode() const { return _cur_node; }
     LinkList<T>* next() const { return _cur_node->next(); }
     LinkList<T>* prev() const { return _cur_node->prev(); }
-    T data() const { return _cur_node->data(); }    // Get data for the LinkList class
-    void setData(T data) { _cur_node->setData(data); }      // Sets the data of the current node.
     
     // Add data for the LinkList class
     LinkList<T> copy() const;       // Creates a copy of the LinkList.
@@ -84,16 +80,34 @@ public:
     
     // delete the data
     void clear();       // Deletes all the data in the LinkList.
+    LinkList<T>& Remove(T& data);        // Removes the last element from the LinkList.
     LinkList<T>& pop(); // Removes the last element from the LinkList.
     LinkList<T>& popleft(); // Removes the first element from the LinkList.
 
+    // Change data
+    void setData(T data) { _cur_node->setData(data); }      // Sets the data of the current node.
+    LinkList<T>& reverse(); // Reverses the LinkList in place.
+
+    
     // file operate
-    void save(const char* filename, ios_base::openmode mode = ios_base::out) const;
-    void load(const char* filename, ios_base::openmode mode = ios_base::in);
+    // void save(const char* filename, ios_base::openmode mode = ios_base::out) const {
+    //     std::ofstream ofs(filename, mode);
+    //     Node<T>* cur_node = _head;
+    //     while (cur_node != nullptr) {
+    //         ofs << cur_node->data() << std::endl;
+    //         cur_node = cur_node->next();
+    //     }
+    // }
+    // void load(const char* filename, ios_base::openmode mode = ios_base::in) {
+    //     std::ifstream ifs(filename, mode);
+    //     T data;
+    //     while (ifs >> data) {
+    //         append(data);
+    //     }
+    //     ifs.close();
+    // }
 
     // operators
-    LinkList<T>& operator=(const LinkList<T>& other); // Assignment operator
-
     friend std::istream& operator>>(std::istream& is, LinkList<T>& list) {
         T data;
         while (is >> data and data != -1) {
@@ -157,6 +171,17 @@ void LinkList<char>::show() const {
 }
 
 template <typename T>
+int LinkList<T>::save(const std::string& filename) {
+    std::ofstream ofs(filename);
+    Node<T>* cur_node = _head;
+    while (cur_node != nullptr) {
+        ofs << cur_node->data() << std::endl;
+        cur_node = cur_node->next();
+    }
+    return 0;
+}
+
+template <typename T>
 LinkList<T> LinkList<T>::copy() const {
     LinkList<T> copyList;
     for (Node<T>* cur_node = _head; cur_node != nullptr; cur_node = cur_node->next())
@@ -203,6 +228,24 @@ void LinkList<T>::clear() {
 }
 
 template <typename T>
+LinkList<T>& LinkList<T>::Remove(T& data) {
+    if (_cur_node == nullptr) {
+        throw std::runtime_error("List is empty");
+    } 
+    Node<T>* cur_node = _head;
+    while (cur_node != nullptr) {
+        if (cur_node->data() == data) {
+            Node<T>* prev_node = cur_node->prev();
+            prev_node->setNext(cur_node->next());
+            delete cur_node;
+            _size--;
+            return *this;
+        }
+        cur_node = cur_node->next();
+    }
+}
+
+template <typename T>
 LinkList<T>& LinkList<T>::pop() {
     if (_cur_node == nullptr) {
         throw std::runtime_error("List is empty");
@@ -227,5 +270,19 @@ LinkList<T>& LinkList<T>::popleft() {
     return *this;
 }
 
+template <typename T>
+LinkList<T>& LinkList<T>::reverse() {
+    Node<T>* cur_node = _head;
+    Node<T>* prev_node = nullptr;
+    Node<T>* next_node = nullptr;
+    while (cur_node != nullptr) {
+        next_node = cur_node->next();
+        cur_node->setNext(prev_node);
+        prev_node = cur_node;
+        cur_node = next_node;
+    }
+    _head = prev_node;
+    return *this;
+}
 
 #endif // END LINKLIST_H_INCLUED
