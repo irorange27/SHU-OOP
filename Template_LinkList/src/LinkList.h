@@ -58,10 +58,6 @@ public:
         clear();
     }
 
-    
-    int save(const std::string& filename);
-    int load(const std::string& filename);
-    
     // Get data for the LinkList class
     T data() const { return _cur_node->data(); }    // Get data for the LinkList class
     void show() const;  // Displays the data in the LinkList.
@@ -115,25 +111,10 @@ public:
     // Change data
     void setData(T data) { _cur_node->setData(data); }      // Sets the data of the current node.
     LinkList<T>& reverse(); // Reverses the LinkList in place.
-
-    
-    // file operate
-    // void save(const char* filename, ios_base::openmode mode = ios_base::out) const {
-    //     std::ofstream ofs(filename, mode);
-    //     Node<T>* cur_node = _head;
-    //     while (cur_node != nullptr) {
-    //         ofs << cur_node->data() << std::endl;
-    //         cur_node = cur_node->next();
-    //     }
-    // }
-    // void load(const char* filename, ios_base::openmode mode = ios_base::in) {
-    //     std::ifstream ifs(filename, mode);
-    //     T data;
-    //     while (ifs >> data) {
-    //         append(data);
-    //     }
-    //     ifs.close();
-    // }
+    LinkList<T>& sort(bool ascending=true);    // Sorts the LinkList in place.
+    void merge(LinkList &list1, LinkList &list2, bool ascending=true); // Merges the LinkList with another LinkList.
+    int save(const std::string& filename);
+    int load(const std::string& filename);
 
     // operators
     friend std::istream& operator>>(std::istream& is, LinkList<T>& list) {
@@ -205,6 +186,16 @@ int LinkList<T>::save(const std::string& filename) {
     while (cur_node != nullptr) {
         ofs << cur_node->data() << std::endl;
         cur_node = cur_node->next();
+    }
+    return 0;
+}
+
+template <typename T>
+int LinkList<T>::load(const std::string& filename) {
+    std::ifstream ifs(filename);
+    T data;
+    while (ifs >> data) {
+        append(data);
     }
     return 0;
 }
@@ -311,6 +302,39 @@ LinkList<T>& LinkList<T>::reverse() {
     }
     _head = prev_node;
     return *this;
+}
+
+template <typename T>
+LinkList<T>& LinkList<T>::sort(bool ascending) {
+    Node<T>* cur_node = _head;
+    Node<T>* next_node = nullptr;
+    while (cur_node != nullptr) {
+        next_node = cur_node->next();
+        while (next_node != nullptr) {
+            if (ascending) {
+                if (cur_node->data() > next_node->data()) {
+                    T temp = cur_node->data();
+                    cur_node->setData(next_node->data());
+                    next_node->setData(temp);
+                }
+            } else {
+                if (cur_node->data() < next_node->data()) {
+                    T temp = cur_node->data();
+                    cur_node->setData(next_node->data());
+                    next_node->setData(temp);
+                }
+            }
+            next_node = next_node->next();
+        }
+        cur_node = cur_node->next();
+    }
+    return *this;
+}
+
+template <typename T>
+void LinkList<T>::merge(LinkList &list1, LinkList &list2, bool ascending) {
+    list1.extend(list2);
+    list1.sort(ascending);
 }
 
 #endif // END LINKLIST_H_INCLUED
