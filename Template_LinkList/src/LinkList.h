@@ -117,6 +117,23 @@ public:
     int load(const std::string& filename);
 
     // operators
+    bool operator==(const LinkList<T>& other) const {
+        Node<T>* cur_node = _head;
+        Node<T>* other_node = other._head;
+        while (cur_node != nullptr && other_node != nullptr) {
+            if (cur_node->data() != other_node->data()) {
+                return false;
+            }
+            cur_node = cur_node->next();
+            other_node = other_node->next();
+        }
+        return cur_node == nullptr && other_node == nullptr;
+    }
+
+    bool operator!=(const LinkList<T>& other) const {
+        return !(*this == other);
+    }
+    
     friend std::istream& operator>>(std::istream& is, LinkList<T>& list) {
         T data;
         while (is >> data and data != -1) {
