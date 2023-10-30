@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1698590799 source:d:\0work\code\oop\oop-proj\wordle\wordle.cpp
+1698642349 source:d:\0work\code\oop\oop-proj\wordle\wordle.cpp
 	<iostream>
 	<cstring>
 	<vector>
@@ -7,10 +7,11 @@
 	"wordle.h"
 	<cctype>
 
-1698590820 d:\0work\code\oop\oop-proj\wordle\wordle.h
+1698636869 d:\0work\code\oop\oop-proj\wordle\wordle.h
+	<iostream>
 	<vector>
 
-1698590798 source:d:\0work\code\oop\oop-proj\wordle\main.cpp
+1698642383 source:d:\0work\code\oop\oop-proj\wordle\main.cpp
 	<iostream>
 	<vector>
 	<string>
