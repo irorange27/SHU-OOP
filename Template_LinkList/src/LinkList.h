@@ -2,8 +2,8 @@
 #ifndef LINKLIST_H_INCLUDED
 #define LINKLIST_H_INCLUDED
 
-
-using namespace std;
+#include <iostream>
+#include <fstream>
 
 template <typename T> class LinkList;
 
@@ -63,26 +63,36 @@ public:
         }
     }
     ~LinkList() {
-        Node<T>* cur_node = _head;
-        while (cur_node != nullptr) {
-            Node<T>* next_node = cur_node->next();
-            delete cur_node;
-            cur_node = next_node;
-        }
+        clear();
     }
-    size_t size() const { return _size; }
+
     void show() const;
+    
+    size_t size() const { return _size; }
     Node<T>* head() const { return _head; }
     Node<T>* tail() const { return _cur_node; } 
     Node<T>* curNode() const { return _cur_node; }
     LinkList<T>* next() const { return _cur_node->next(); }
     LinkList<T>* prev() const { return _cur_node->prev(); }
-    void setData(T data) { _cur_node->setData(data); }
-    LinkList<T> copy() const;
-    LinkList<T>& append(T data);
-    LinkList<T>& extend(const LinkList<T>& other);
-    LinkList<T>& pop();
-    LinkList<T>& popleft();
+    T data() const { return _cur_node->data(); }    // Get data for the LinkList class
+    void setData(T data) { _cur_node->setData(data); }      // Sets the data of the current node.
+    
+    // Add data for the LinkList class
+    LinkList<T> copy() const;       // Creates a copy of the LinkList.
+    LinkList<T>& append(T data);        // Appends data to the end of the LinkList.
+    LinkList<T>& extend(const LinkList<T>& other); // Extends the LinkList with another LinkList.
+    
+    // delete the data
+    void clear();       // Deletes all the data in the LinkList.
+    LinkList<T>& pop(); // Removes the last element from the LinkList.
+    LinkList<T>& popleft(); // Removes the first element from the LinkList.
+
+    // file operate
+    void save(const char* filename, ios_base::openmode mode = ios_base::out) const;
+    void load(const char* filename, ios_base::openmode mode = ios_base::in);
+
+    // operators
+    LinkList<T>& operator=(const LinkList<T>& other); // Assignment operator
 
     friend std::istream& operator>>(std::istream& is, LinkList<T>& list) {
         T data;
@@ -109,6 +119,18 @@ public:
     
 };
 
+template <typename T>
+LinkList<T>& LinkList<T>::operator=(const LinkList<T>& other) {
+    if (this != &other) {
+        clear();
+        Node<T>* cur_node = other._head;
+        while (cur_node != nullptr) {
+            append(cur_node->data());
+            cur_node = cur_node->next();
+        }
+    }
+    return *this;
+}
 
 template <typename T>
 void LinkList<T>::show() const {
@@ -165,6 +187,19 @@ LinkList<T>& LinkList<T>::extend(const LinkList<T>& other) {
         cur_node = cur_node->next();
     }
     return *this;
+}
+
+template <typename T>
+void LinkList<T>::clear() {
+    Node<T>* cur_node = _head;
+    while (cur_node != nullptr) {
+        Node<T>* next_node = cur_node->next();
+        delete cur_node;
+        cur_node = next_node;
+    }
+    _head = nullptr;
+    _cur_node = nullptr;
+    _size = 0;
 }
 
 template <typename T>
