@@ -81,7 +81,7 @@ public:
     }
     Node<T>* locate(const T& data) {
         Node<T>* cur_node = _head;
-        while (cur_node != nullptr && cur_node->data() != data) {
+        while (cur_node != nullptr && T(cur_node->data()) != T(data)) {
             cur_node = cur_node->next();
         }
         return cur_node;
