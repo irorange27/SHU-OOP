@@ -72,9 +72,9 @@ public:
     Node<T>* curNode() const { return _cur_node; }
     LinkList<T>* next() const { return _cur_node->next(); }
     LinkList<T>* prev() const { return _cur_node->prev(); }
-    Node<T>* getIndex(size_t index) const {
+    Node<T>* getIndex(const T& data) const {
         Node<T>* cur_node = _head;
-        for (size_t i = 0; i < index; i++) {
+        while (cur_node != nullptr && cur_node->data() != data) {
             cur_node = cur_node->next();
         }
         return cur_node;
